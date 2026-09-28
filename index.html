@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Борислава</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+    font-family: Arial, sans-serif;
+}
+
+/* =========================
+   ЕКРАНИ
+========================= */
+
+.screen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.9);
+}
+
+/* =========================
+   ПИТАННЯ
+========================= */
+
+.question {
+    font-size: 38px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 45px;
+    padding: 20px;
+
+    text-shadow:
+        0 0 5px white,
+        0 0 15px #ff77c8,
+        0 0 30px #ff269f;
+}
+
+/* =========================
+   КНОПКИ
+========================= */
+
+.buttons {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+}
+
+button {
+    border: none;
+
+    padding: 15px 35px;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    color: white;
+    background: #ff4db8;
+
+    border-radius: 30px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 10px #ff4db8,
+        0 0 25px #ff239f;
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+}
+
+button:hover {
+    transform: scale(1.1);
+
+    box-shadow:
+        0 0 15px #fff,
+        0 0 35px #ff239f;
+}
+
+/* =========================
+   ФІНАЛ
+========================= */
+
+#finalText {
+    font-size: 55px;
+    font-weight: bold;
+
+    color: white;
+    text-align: center;
+
+    text-shadow:
+        0 0 8px white,
+        0 0 20px #ff7bc8,
+        0 0 40px #ff209f;
+
+    animation: finalAppear 1s ease;
+}
+
+@keyframes finalAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* =========================
+   СЕРЦЕ
+========================= */
+
+#heartScreen {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    opacity: 0;
+    pointer-events: none;
+
+    transition: opacity 1s ease;
+}
+
+#heartScreen.show {
+    opacity: 1;
+}
+
+/*
+   Серце точно по центру
+*/
+
+#heart {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 650px;
+    height: 550px;
+
+    transform: translate(-50%, -50%);
+
+    animation:
+        heartbeat 1.3s infinite ease-in-out;
+}
+
+@keyframes heartbeat {
+
+    0% {
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+    }
+
+    20% {
+        transform:
+            translate(-50%, -50%)
+            scale(1.08);
+    }
+
+    40% {
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+    }
+
+    60% {
+        transform:
+            translate(-50%, -50%)
+            scale(1.05);
+    }
+
+    100% {
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+    }
+}
+
+/* =========================
+   I LOVE YOU
+========================= */
+
+.love {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 0;
+    height: 0;
+
+    --i: 1;
+}
+
+.love_horizontal {
+    animation:
+        horizontal 10s infinite alternate ease-in-out;
+
+    animation-delay:
+        calc(var(--i) * -300ms);
+}
+
+.love_vertical {
+    animation:
+        vertical 20s infinite linear;
+
+    animation-delay:
+        calc(var(--i) * -300ms);
+}
+
+.love_word {
+    position: absolute;
+
+    white-space: nowrap;
+
+    color: #e978b0;
+
+    font-size: 16px;
+    font-weight: 500;
+
+    letter-spacing: 0.5px;
+
+    transform:
+        translateY(-100%)
+        rotate(-30deg);
+
+    text-shadow:
+        0 0 3px #ff6fbd,
+        0 0 8px #ff69c7,
+        0 0 15px #ff35b5;
+
+    animation:
+        glow 1.8s infinite alternate;
+
+    animation-delay:
+        calc(var(--i) * -120ms);
+}
+
+/* =========================
+   РУХ СЕРЦЯ
+========================= */
+
+@keyframes horizontal {
+
+    from {
+        transform: translateX(-245px);
+    }
+
+    to {
+        transform: translateX(245px);
+    }
+}
+
+@keyframes vertical {
+
+    0% {
+        transform: translateY(80px);
+    }
+
+    10% {
+        transform: translateY(-55px);
+    }
+
+    15% {
+        transform: translateY(-95px);
+    }
+
+    18% {
+        transform: translateY(-100px);
+    }
+
+    20% {
+        transform: translateY(-95px);
+    }
+
+    22% {
+        transform: translateY(-65px);
+    }
+
+    24% {
+        transform: translateY(-36px);
+    }
+
+    25% {
+        transform: translateY(12px);
+    }
+
+    26% {
+        transform: translateY(-36px);
+    }
+
+    28% {
+        transform: translateY(-65px);
+    }
+
+    30% {
+        transform: translateY(-95px);
+    }
+
+    32% {
+        transform: translateY(-100px);
+    }
+
+    35% {
+        transform: translateY(-95px);
+    }
+
+    40% {
+        transform: translateY(-55px);
+    }
+
+    50% {
+        transform: translateY(80px);
+    }
+
+    65% {
+        transform: translateY(250px);
+    }
+
+    71% {
+        transform: translateY(328px);
+    }
+
+    75% {
+        transform: translateY(350px);
+    }
+
+    79% {
+        transform: translateY(328px);
+    }
+
+    85% {
+        transform: translateY(250px);
+    }
+
+    100% {
+        transform: translateY(80px);
+    }
+}
+
+/* =========================
+   ПЕРЕЛИВАННЯ
+========================= */
+
+@keyframes glow {
+
+    0% {
+        color: #d85f9c;
+        opacity: 0.5;
+    }
+
+    50% {
+        color: white;
+        opacity: 1;
+
+        text-shadow:
+            0 0 5px white,
+            0 0 12px #ffb1e3,
+            0 0 22px #ff42b8;
+    }
+
+    100% {
+        color: #df6da9;
+        opacity: 0.6;
+    }
+}
+
+/* =========================
+   ТЕЛЕФОН
+========================= */
+
+@media (max-width: 700px) {
+
+    .question {
+        font-size: 28px;
+    }
+
+    #finalText {
+        font-size: 40px;
+    }
+
+    #heart {
+        width: 390px;
+        height: 400px;
+    }
+
+    .love_word {
+        font-size: 10px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     ПЕРШЕ ПИТАННЯ
+========================= -->
+
+<div id="question1" class="screen">
+
+    <div class="question">
+        Борислава, можна одне питання?
+    </div>
+
+    <div class="buttons">
+
+        <button onclick="nextQuestion()">
+            Так
+        </button>
+
+    </div>
+
+</div>
+
+<!-- =========================
+     ДРУГЕ ПИТАННЯ
+========================= -->
+
+<div id="question2" class="screen hidden">
+
+    <div class="question">
+        Ти зараз посміхаєшся?
+    </div>
+
+    <div class="buttons">
+
+        <button onclick="showFinal()">
+            Так
+        </button>
+
+        <button onclick="showFinal()">
+            Ні
+        </button>
+
+    </div>
+
+</div>
+
+<!-- =========================
+     ФІНАЛ
+========================= -->
+
+<div id="final" class="screen hidden">
+
+    <div id="finalText">
+        Я так і знав 😏
+    </div>
+
+</div>
+
+<!-- =========================
+     СЕРЦЕ
+========================= -->
+
+<div id="heartScreen">
+
+    <div id="heart"></div>
+
+</div>
+
+<script>
+
+/* =========================
+   ПЕРЕХІД ДО ПИТАННЯ 2
+========================= */
+
+function nextQuestion() {
+
+    document
+        .getElementById("question1")
+        .classList.add("hidden");
+
+    setTimeout(() => {
+
+        document
+            .getElementById("question2")
+            .classList.remove("hidden");
+
+    }, 500);
+}
+
+
+/* =========================
+   ФІНАЛ
+========================= */
+
+function showFinal() {
+
+    document
+        .getElementById("question2")
+        .classList.add("hidden");
+
+    setTimeout(() => {
+
+        document
+            .getElementById("final")
+            .classList.remove("hidden");
+
+    }, 500);
+
+    setTimeout(() => {
+
+        document
+            .getElementById("final")
+            .classList.add("hidden");
+
+        document
+            .getElementById("heartScreen")
+            .classList.add("show");
+
+        createHeart();
+
+    }, 3000);
+}
+
+
+/* =========================
+   СТВОРЕННЯ СЕРЦЯ
+========================= */
+
+function createHeart() {
+
+    const heart =
+        document.getElementById("heart");
+
+    /*
+       Щоб при повторному запуску
+       слова не дублювалися
+    */
+
+    heart.innerHTML = "";
+
+    const totalItems = 130;
+
+    for (
+        let i = 1;
+        i <= totalItems;
+        i++
+    ) {
+
+        const love =
+            document.createElement("div");
+
+        love.className = "love";
+
+        love.style.setProperty(
+            "--i",
+            i
+        );
+
+        love.innerHTML = `
+
+            <div class="love_horizontal">
+
+                <div class="love_vertical">
+
+                    <div class="love_word">
+                        I love you
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+        heart.appendChild(love);
+    }
+}
+
+</script>
+
+</body>
+</html>
